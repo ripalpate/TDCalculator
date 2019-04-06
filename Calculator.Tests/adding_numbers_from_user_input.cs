@@ -5,34 +5,22 @@ namespace Calculator.Tests
 {
     public class adding_numbers_from_user_input
     {
-        [Fact]
-        public void adding_2_and_2_should_be_4()
+        [Theory]
+        [InlineData("2+2", 4)]
+        [InlineData("2+5", 7)]
+        [InlineData("2+10", 12)]
+        [InlineData("9+22", 31)]
+        [InlineData("9+22+7", 38)]
+        public void adding_any_set_of_numbers_should_return_the_result(string input, int expectedResult)
         {
             //Arrange -- context -- Given from Userstory
             var calculator = new CalculationEngine();
-            var input = "2+2";
-            var expectedResult = 4;
-
+     
             //Act -- Do the thing -- When from Userstory
             var actualResult = calculator.DoMath(input);
 
             //Assert --Checking the result -- Then
             Assert.Equal(expectedResult,actualResult);
-        }
-
-        [Fact]
-        public void adding_2_and_5_should_be_7()
-        {
-            //Arrange -- context -- Given from Userstory
-            var calculator = new CalculationEngine();
-            var input = "2+5";
-            var expectedResult = 7;
-
-            //Act -- Do the thing -- When from Userstory
-            var actualResult = calculator.DoMath(input);
-
-            //Assert --Checking the result -- Then
-            Assert.Equal(expectedResult, actualResult);
         }
 
         [Fact]
@@ -46,19 +34,19 @@ namespace Calculator.Tests
             Assert.Throws<InvalidInputException>(() => /*act*/calculator.DoMath(input));
         }
 
-        [Fact]
-        public void adding_3_numbers_they_should_be_added_successfully()
-        {
-            //Arrange -- context -- Given from Userstory
-            var calculator = new CalculationEngine();
-            var input = "2+5+10";
-            var expectedResult = 17;
+        //[Fact]
+        //public void adding_3_numbers_they_should_be_added_successfully()
+        //{
+        //    //Arrange -- context -- Given from Userstory
+        //    var calculator = new CalculationEngine();
+        //    var input = "2+5+10";
+        //    var expectedResult = 17;
 
-            //Act -- Do the thing -- When from Userstory
-            var actualResult = calculator.DoMath(input);
+        //    //Act -- Do the thing -- When from Userstory
+        //    var actualResult = calculator.DoMath(input);
 
-            //Assert --Checking the result -- Then
-            Assert.Equal(expectedResult, actualResult);
-        }
+        //    //Assert --Checking the result -- Then
+        //    Assert.Equal(expectedResult, actualResult);
+        //}
     }
 }
